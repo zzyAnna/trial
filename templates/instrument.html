@@ -1,0 +1,152 @@
+<style>
+  .intro{
+    font-size: 16px; 
+    text-align: unset; 
+    position: relative; 
+    top: 1.5rem;
+    left: 17rem; 
+  }
+  
+  label{
+    font-weight: bold; 
+    color: rgb(104, 31, 173); 
+    margin-bottom: 0.6rem; 
+    font-size: 20px; 
+    position: relative; 
+    top: 1.5rem; 
+    left: 16rem; 
+  }
+
+  p{
+    font-size: 16px; 
+    position: relative; 
+    top: 1.3rem;
+    left: 17rem; 
+  }
+
+  select{
+    position: relative; 
+    left: 17rem; 
+    top: -0.7rem;
+  }
+
+  div{
+    button{
+      position: relative; 
+      top: 3rem; 
+      left: 20rem;
+      width: 10rem;
+      border-radius: 2.5rem;
+    }
+  }
+
+  .save{
+    margin-left: 10rem; 
+    margin-right: 10rem; 
+  }
+
+  button:hover{
+    color: white; 
+    background-color: blueviolet;
+  }
+</style>
+
+{% extends "base.html" %}
+{% block title %}Instrument Selection{% endblock %}
+{% block content %}
+<p class="intro">In this section, you will choose the instruments that will be used to generate your music. </p>
+
+<div id="solo">
+  <label for="solo-instrument" class="solo-label">
+    Choose a solo instrument:
+  </label>
+  <p>
+    Solo Instruments play the melody of a piece. Its timbre and tonality determine the overall style of the piece. 
+  </p>
+  <br>
+  <select name="solo-instrument" id="solo-instrument">
+    <option value="flute">Flute &#40;Default&#41;</option>
+    <option value="violin">Violin</option>
+  </select>
+  <script>
+    dropdown1 = document.getElementById('solo-instrument');
+    savedValue1 = localStorage.getItem('selectedOption1');
+
+    if (savedValue1){	
+      dropdown1.value = savedValue1;
+    }
+
+    dropdown1.addEventListener('change', function() {
+      localStorage.setItem('selectedOption1', dropdown1.value);
+    });
+  </script>
+</div>
+
+<div id="acc">
+  <label for="accompaniment-instrument" class="accompaniment-label">
+    Choose an accompaniment instrument:
+  </label>
+  <p class="accompaniment-p">
+    Accompaniment Instruments act as a supplement to the solo instrument. 
+  </p>
+  <br>
+  <select name="accompaniment-instrument" id="accompaniment-instrument" class="accompaniment-select">
+    <option value="piano">Piano &#40;Default&#41;</option>
+    <option value="guitar">Guitar</option>
+  </select>
+  <script>
+    dropdown2 = document.getElementById('accompaniment-instrument');
+    savedValue2 = localStorage.getItem('selectedOption2');
+
+    if (savedValue2){	
+      dropdown2.value = savedValue2;
+    }
+
+    dropdown2.addEventListener('change', function() {
+      localStorage.setItem('selectedOption2', dropdown2.value);
+    });
+  </script>
+</div>
+
+<div id="per">
+  <label for="percussion" class="percussion-label">
+    Choose a percussion instrument:
+  </label>
+  <p class="percussion-p">
+    Percussion 
+  </p>
+  <br>
+  <select name="percussion-instrument" id="percussion-instrument" class="percussion-select">
+    <option value="none">None &#40;Default&#41;</option>
+    <option value="drumset">Drum Set</option>
+  </select>
+  <script>
+    dropdown3 = document.getElementById('percussion-instrument');
+    savedValue3 = localStorage.getItem('selectedOption3');
+
+    if (savedValue3){	
+      dropdown3.value = savedValue3;
+    }
+
+    dropdown3.addEventListener('change', function() {
+      localStorage.setItem('selectedOption3', dropdown3.value);
+    });
+  </script>
+</div>
+
+<script>
+  function resetAll(){
+    document.getElementById("solo-instrument").selectedIndex = 0;
+    document.getElementById("accompaniment-instrument").selectedIndex = 0;
+    document.getElementById("percussion-instrument").selectedIndex = 0;
+  }
+</script>
+
+<div>
+  <button onClick="resetAll()">Reset</button>
+  <button class="save">Save</button>
+  <a href="customize">
+    <button>Save & Exit</button>
+  </a>
+</div> 
+{% endblock %}

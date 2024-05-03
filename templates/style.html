@@ -1,0 +1,134 @@
+<style>
+  .intro{
+    font-size: 16px; 
+    text-align: unset; 
+    position: relative; 
+    top: 1.5rem;
+    left: 17rem; 
+  }
+
+  label{
+    font-weight: bold; 
+    color: rgb(104, 31, 173); 
+    margin-bottom: 0.6rem; 
+    font-size: 20px; 
+    position: relative; 
+    top: 1.5rem; 
+    left: 16rem; 
+  }
+
+  p{
+    font-size: 16px; 
+    position: relative; 
+    top: 2.9rem;
+    left: 15rem; 
+    width: 55rem;
+  }
+
+  select{
+    position: relative; 
+    left: 17rem; 
+    top: 1.5rem;
+  }
+
+  div{
+    button{
+      position: relative; 
+      top: 5rem; 
+      left: 20rem;
+      width: 10rem;
+      border-radius: 2.5rem;
+    }
+  }
+
+  .save{
+    margin-left: 10rem; 
+    margin-right: 10rem; 
+  }
+
+  button:hover{
+    color: white; 
+    background-color: blueviolet;
+  }
+</style>
+
+{% extends "base.html" %}
+{% block title %}Style Selection{% endblock %}
+{% block content %}
+<p class="intro">
+  In this section, you will choose the basic styles for your music. Please note that if you change any of the below 
+  settings, you will be unable to choose the melody. 
+</p>
+
+<div>
+  <label for="key" class="key-label">
+    Choose a key: 
+  </label>
+  <br>
+  <select name="key" id="key">
+    <option value="default">Go with default</option>
+    <option value="major">Major</option>
+    <option value="minor">Minor</option>
+  </select>
+  <script>
+    dropdown4 = document.getElementById('key');
+    savedValue4 = localStorage.getItem('selectedOption4');
+
+    if (savedValue4){	
+      dropdown4.value = savedValue4;
+    }
+
+    dropdown4.addEventListener('change', function() {
+      localStorage.setItem('selectedOption4', dropdown4.value);
+    });
+  </script>
+</div>
+
+<br>
+<div>
+  <label for="time" class="time-label">
+    Choose the time:
+  </label>
+  <br>
+  <select name="time" id="time" class="time-select">
+    <option value="default">Go with default</option>
+    <option value="fourfour">4/4</option>
+    <option value="fourthree">3/4</option>
+  </select>
+  <script>
+    dropdown5 = document.getElementById('time');
+    savedValue5 = localStorage.getItem('selectedOption5');
+
+    if (savedValue5){	
+      dropdown5.value = savedValue5;
+    }
+
+    dropdown5.addEventListener('change', function() {
+      localStorage.setItem('selectedOption5', dropdown5.value);
+    });
+  </script>
+</div>
+
+<script>
+  function resetAll(){
+    document.getElementById("key").selectedIndex = 0;
+    document.getElementById("time").selectedIndex = 0;
+
+    dropdown4.addEventListener('change', function() {
+      localStorage.setItem('selectedOption4', document.getElementById("key")[0]);
+    });
+    dropdown5.addEventListener('change', function() {
+      localStorage.setItem('selectedOption5', document.getElementById("time")[0]);
+    });
+  }
+</script>
+
+<div>
+  <button onClick="resetAll()">Reset</button>
+  <button class="save">Save</button>
+  <a href="customize">
+    <button>Save & Exit</button>
+  </a>
+</div> 
+
+{% endblock %}

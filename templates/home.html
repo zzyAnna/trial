@@ -1,0 +1,26 @@
+<style>
+  .create-button{
+    display: block; 
+    margin: auto; 
+    font-family: Arial;
+    margin-top: 1.5rem; 
+    border-radius: 2.5rem;
+  }
+
+  .create-button:hover{
+    background-color: blueviolet;
+    color: white; 
+    cursor: pointer; 
+  }
+</style>
+
+
+{% extends "base.html" %}
+{% block title %}Welcome To Musie{% endblock %}
+{% block content %}
+intro 	&#40; write on plane 	&#41;
+<a href="customize">
+  <button class="create-button">GET STARTED</button>
+</a>
+{% endblock %}
+
